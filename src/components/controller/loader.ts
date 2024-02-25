@@ -1,7 +1,4 @@
-interface Options {
-    [key: string]: string;
-}
-
+import { Options } from '../../types/options.types';
 class Loader {
     private baseLink: string;
     private options: Options;
@@ -40,11 +37,11 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load<T>(method: string, endpoint: string, callback: (data: T) => void, options: Options = {}): Promise<void> {
+    load<T>(method: string, endpoint: string, callback: (data?: T) => void, options: Options = {}): Promise<void> {
         return fetch(this.makeUrl(options, endpoint), { method })
             .then((res) => this.errorHandler(res))
             .then((res) => res.json())
-            .then((data: T) => callback(data))
+            .then((data?: T) => callback(data))
             .catch((err) => console.error(err));
     }
 }
