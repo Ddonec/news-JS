@@ -1,23 +1,36 @@
 import './sources.css';
 import { NewsItem } from '../../../types/data.interface';
-import { isNullOrUndefined } from '../../../types/typeCheck.functions';
 
 class Sources<T extends NewsItem> {
     draw(data: T[]) {
         const fragment = document.createDocumentFragment();
-        const sourceItemTemp = isNullOrUndefined(document.querySelector<HTMLTemplateElement>('#sourceItemTemp'));
+        const sourceItemTemp = document.querySelector<HTMLTemplateElement>('#sourceItemTemp');
+
+        if (!sourceItemTemp) {
+            console.error('Template element not found');
+            return;
+        }
 
         data.forEach((item) => {
-            const sourceClone = sourceItemTemp.content.cloneNode(true);
+            const sourceClone = sourceItemTemp.content.cloneNode(true) as HTMLElement;
 
-            if (sourceClone instanceof HTMLTemplateElement) {
-                isNullOrUndefined(sourceClone.querySelector('.source__item-name')).textContent = item.name;
-                isNullOrUndefined(sourceClone.querySelector('.source__item')).setAttribute('data-source-id', item.id);
+            const itemNameElement = sourceClone.querySelector('.source__item-name');
+            const itemElement = sourceClone.querySelector('.source__item');
+
+            if (itemNameElement && itemElement) {
+                itemNameElement.textContent = item.name;
+                itemElement.setAttribute('data-source-id', item.id.toString());
                 fragment.append(sourceClone);
             }
         });
 
-        isNullOrUndefined(document.querySelector('.sources')).append(fragment);
+        const sourcesContainer = document.querySelector<HTMLElement>('.sources');
+        if (!sourcesContainer) {
+            console.error('Container element not found');
+            return;
+        }
+
+        sourcesContainer.append(fragment);
     }
 }
 
