@@ -10,6 +10,17 @@ export interface NewsItem {
     source: { name: string; id: string };
 }
 
+export interface NewsData extends NewsItem {
+    category?: string;
+    language?: string;
+    country?: string;
+}
+
+export interface NewsSource extends NewsItem {
+    status?: string;
+    sources?: NewsData[];
+}
+
 export interface NewsCallback {
     (data?: NewsItem[]): void;
 }
