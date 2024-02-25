@@ -11,14 +11,14 @@ export interface NewsItem {
 }
 
 export interface NewsData extends NewsItem {
-    category?: string;
-    language?: string;
-    country?: string;
+    category: string;
+    language: string;
+    country: string;
 }
 
 export interface NewsSource extends NewsItem {
-    status?: string;
-    sources?: NewsData[];
+    status: string;
+    sources: NewsData[];
 }
 
 export interface NewsCallback {
