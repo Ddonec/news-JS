@@ -1,8 +1,8 @@
 import './sources.css';
 import { NewsItem } from '../../../types/data.interface';
 
-class Sources<T extends NewsItem> {
-    draw(data: T[]) {
+class Sources {
+    draw(data: NewsItem[]) {
         const fragment = document.createDocumentFragment();
         const sourceItemTemp = document.querySelector<HTMLTemplateElement>('#sourceItemTemp');
 

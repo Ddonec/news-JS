@@ -1,8 +1,8 @@
 import './news.css';
 import { NewsItem } from '../../../types/data.interface';
 
-class News<T extends NewsItem> {
-    draw(data: T[]) {
+class News {
+    draw(data: NewsItem[]) {
         const news = data.length >= 10 ? data.slice(0, 10) : data;
 
         const fragment = document.createDocumentFragment();

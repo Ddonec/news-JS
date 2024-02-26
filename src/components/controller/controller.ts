@@ -1,8 +1,8 @@
 import AppLoader from './appLoader';
-import { NewsCallback } from '../../types/data.interface';
+import { NewsSource, NewsData } from '../../types/data.interface';
 
 class AppController extends AppLoader {
-    getSources(callback: NewsCallback) {
+    getSources(callback: (data?: NewsSource) => void) {
         super.getResp(
             {
                 endpoint: 'sources',
@@ -11,7 +11,7 @@ class AppController extends AppLoader {
         );
     }
 
-    getNews(e: Event, callback: NewsCallback) {
+    getNews(e: Event, callback: (data?: NewsData) => void) {
         let target = e.target as HTMLElement;
         const newsContainer = e.currentTarget as HTMLElement;
 
@@ -40,5 +40,4 @@ class AppController extends AppLoader {
         }
     }
 }
-
 export default AppController;

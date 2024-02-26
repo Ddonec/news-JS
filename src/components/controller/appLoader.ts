@@ -7,5 +7,5 @@ class AppLoader extends Loader {
         });
     }
 }
-
+console.log(AppLoader);
 export default AppLoader;

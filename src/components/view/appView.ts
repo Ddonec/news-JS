@@ -3,21 +3,21 @@ import Sources from './sources/sources';
 import { NewsData, NewsSource } from '../../types/data.interface';
 
 export class AppView {
-    news: News<NewsData>;
-    sources: Sources<NewsSource>;
+    news: News;
+    sources: Sources;
 
     constructor() {
-        this.news = new News<NewsData>();
-        this.sources = new Sources<NewsSource>();
+        this.news = new News();
+        this.sources = new Sources();
     }
 
-    drawNews<T extends { articles: NewsData[] }>(data: T) {
-        const values = data?.articles ?? [];
+    drawNews(data?: NewsData) {
+        const values = data?.articles || [];
         this.news.draw(values);
     }
 
-    drawSources<T extends { sources: NewsSource[] }>(data: T) {
-        const values = data?.sources ?? [];
+    drawSources(data?: NewsSource) {
+        const values = data?.sources ? data?.sources : [];
         this.sources.draw(values);
     }
 }
